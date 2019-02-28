@@ -1,19 +1,12 @@
 package it.hashcode.sevincomilicenzio.fanculo;
 
-<<<<<<< HEAD
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
-=======
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
->>>>>>> branch 'master' of https://github.com/Miggianox94/hashCode2019SeVincoMiLicenzio.git
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.Collection;
-import java.util.Collections;
 
 import org.apache.commons.io.FileUtils;
 
@@ -79,6 +72,7 @@ public class Util {
 		}
 		long finish = System.currentTimeMillis();
 		long timeElapsed = finish - start;
+		System.out.println("---------------TIME ELAPSED PREPROCESSING : "+timeElapsed);
 		return returnList;
 	}
 
@@ -86,7 +80,7 @@ public class Util {
 		long start = System.currentTimeMillis();
 		List<Slide> returnList =  new ArrayList<Slide>();
 		
-		returnList.sort(c);
+		//returnList.sort(c);
 		
 		
 		long finish = System.currentTimeMillis();

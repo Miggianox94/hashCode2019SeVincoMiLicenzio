@@ -11,11 +11,11 @@ public class MainApp {
 		
 		List<Photo> photos = Util.readFile(inputPath);
 		System.out.println("########### READ PHASE FINISHED #############");
-		photos = Util.preprocessPhase(photos);
+		List<Slide> slides = Util.preprocessPhase(photos);
 		System.out.println("########### PREPROCESS PHASE FINISHED #############");
-		List<Slide> slides = Util.calulatingPhase(photos);
+		slides = Util.calulatingPhase(slides);
 		System.out.println("########### CALCULATING PHASE FINISHED #############");
-		Util.writeFile(slides,outputPath);*/
+		Util.writeFile(slides,outputPath);
 		System.out.println("########### WRITE PHASE FINISHED #############");
 		
 	}
