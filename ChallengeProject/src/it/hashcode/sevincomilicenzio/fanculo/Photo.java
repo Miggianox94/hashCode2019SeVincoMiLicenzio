@@ -1,6 +1,5 @@
 package it.hashcode.sevincomilicenzio.fanculo;
 
-import java.util.Queue;
 import java.util.Set;
 
 public class Photo {
@@ -29,6 +28,10 @@ public class Photo {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public Photo() {
+		super();
 	}
 	public Photo(int orientamento, Set<String> tags, int id) {
 		super();
