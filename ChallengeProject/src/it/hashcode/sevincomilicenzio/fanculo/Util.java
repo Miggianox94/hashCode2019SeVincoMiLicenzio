@@ -1,16 +1,12 @@
 package it.hashcode.sevincomilicenzio.fanculo;
-<<<<<<< HEAD
 
 import java.io.BufferedWriter;
-import java.io.FileWriter;
-=======
-
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
->>>>>>> origin/master
 import java.util.List;
 import java.util.Set;
 
@@ -18,13 +14,7 @@ import org.apache.commons.io.FileUtils;
 
 public class Util {
 
-<<<<<<< HEAD
 	private static String outputFileName = "a.txt";
-	
-	public static List<Photo> readFile(String inputpath) {
-		// TODO Auto-generated method stub
-		return null;
-=======
 	private static final String INPUTFILE = "input_A.txt";
 
 	public static List<Photo> readFile(String inputpath) throws IOException {
@@ -53,8 +43,6 @@ public class Util {
 		long timeElapsed = finish - start;
 		System.out.println("---------------TIME ELAPSED READ FILE : "+timeElapsed);
 		return toReturn;
-
->>>>>>> origin/master
 	}
 
 	public static List<Slide> preprocessPhase(List<Photo> photos) {
@@ -103,7 +91,6 @@ public class Util {
 	}
 
 	public static void writeFile(List<Slide> slides, String outputpath) {
-<<<<<<< HEAD
 		long start = System.currentTimeMillis();
 
 		try(BufferedWriter writer = new BufferedWriter(new FileWriter(outputpath+'/'+outputFileName)))
@@ -127,10 +114,6 @@ public class Util {
 		long timeElapsed = finish - start;
 		
 		System.out.println(timeElapsed);
-=======
-		// TODO Auto-generated method stub
-
->>>>>>> origin/master
 	}
 
 }
