@@ -29,6 +29,10 @@ public class Photo {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public Photo() {
+		super();
+	}
 	public Photo(int orientamento, Set<String> tags, int id) {
 		super();
 		if(orientamento != 1 && orientamento != 0) {
