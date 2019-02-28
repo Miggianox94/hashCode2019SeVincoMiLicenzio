@@ -16,6 +16,7 @@ public class Util {
 
 	private static String outputFileName = "a.txt";
 	private static final String INPUTFILE = "input_A.txt";
+	private static final int intorno = 20;
 
 	public static List<Photo> readFile(String inputpath) throws IOException {
 		long start = System.currentTimeMillis();
@@ -82,14 +83,76 @@ public class Util {
 		long start = System.currentTimeMillis();
 		List<Slide> returnList =  new ArrayList<Slide>();
 		
-		//returnList.sort(c);
+		Collections.sort(slides, 
+				(o1,o2) -> o1.getTags().size() - o2.getTags().size());
+		for(Slide slide : slides) {
+			if(slide.isTaken()) {
+				continue;
+			}
+			slide.setTaken(true);
+			returnList.add(slide);
+			Slide bestSlide = calculateBestSlide(slide,slides);
+			bestSlide.setTaken(true);
+			returnList.add(bestSlide);
+		}
 		
 		
 		long finish = System.currentTimeMillis();
 		long timeElapsed = finish - start;
+		System.out.println("---------------TIME ELAPSED CALCULATING : "+timeElapsed);
 		return returnList;
 	}
-
+	
+	private static Slide calculateBestSlide(Slide slide, List<Slide> slides) {
+	int counter = 0;
+	Slide bestSlide = null;
+	int bestScore = -1;
+	while(counter < intorno && counter < slides.size()) {
+		Slide current = slides.get(counter);
+		if(!current.isTaken()) {
+			int score = calculateScore(slide,current);
+			if(score > bestScore) {
+				bestScore = score;
+				bestSlide = current;
+			}
+		}
+			counter++;
+		}
+		return bestSlide;
+	}
+	
+	private static int calculateScore(Slide slide, Slide secondSlide) {
+		Set<String> tags1 = slide.getTags();
+		Set<String> tags2 = slide.getTags();
+		int lowest = Integer.MAX_VALUE;
+		
+		//intersection
+		Set<String> intersection = new HashSet<String>(tags1);
+		intersection.retainAll(tags2);
+		int intersectSize = intersection.size();
+		if(intersectSize < lowest) {
+			lowest = intersectSize;
+		}
+		
+		//1-2
+		Set<String> s1minuss2 = new HashSet<String>(tags1);
+		s1minuss2.removeAll(tags2);
+		int s1minuss2Size = s1minuss2.size();
+		if(s1minuss2Size < lowest) {
+			lowest = s1minuss2Size;
+		}
+		
+		//2-1
+		Set<String> s2minuss1 = new HashSet<String>(tags2);
+		s2minuss1.removeAll(tags1);
+		int s2minuss1Size = s2minuss1.size();
+		if(s2minuss1Size < lowest) {
+			lowest = s2minuss1Size;
+		}
+		
+		return lowest;
+	}
+	
 	public static void writeFile(List<Slide> slides, String outputpath) {
 		long start = System.currentTimeMillis();
 

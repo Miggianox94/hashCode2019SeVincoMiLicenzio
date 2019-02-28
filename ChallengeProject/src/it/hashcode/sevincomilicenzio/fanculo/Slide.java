@@ -8,6 +8,7 @@ public class Slide {
 	private Photo photo1;
 	private Photo photo2;
 	private Set<String> tags;
+	private boolean taken;
 	
 	public Slide(Photo photo1, Photo photo2) {
 		super();
@@ -18,9 +19,22 @@ public class Slide {
 		
 		if(photo2 != null)
 			tags.addAll(photo2.getTags());
+		taken = false;
 	}
 	
 	
+	
+	public boolean isTaken() {
+		return taken;
+	}
+
+
+
+	public void setTaken(boolean taken) {
+		this.taken = taken;
+	}
+
+
 	public Photo getPhoto1() {
 		return photo1;
 	}
