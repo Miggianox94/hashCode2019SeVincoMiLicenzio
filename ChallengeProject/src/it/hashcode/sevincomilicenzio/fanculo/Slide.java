@@ -9,16 +9,18 @@ public class Slide {
 	private Photo photo2;
 	private Set<String> tags;
 	
-	
-	
 	public Slide(Photo photo1, Photo photo2) {
 		super();
 		this.photo1 = photo1;
 		this.photo2 = photo2;
 		tags = new HashSet<>();
 		tags.addAll(photo1.getTags());
-		tags.addAll(photo2.getTags());
+		
+		if(photo2 != null)
+			tags.addAll(photo2.getTags());
 	}
+	
+	
 	public Photo getPhoto1() {
 		return photo1;
 	}
@@ -39,10 +41,9 @@ public class Slide {
 	}
 	@Override
 	public String toString() {
-		return "Slide [photo1=" + photo1 + ", photo2=" + photo2 + ", tags=" + tags + "]";
+		if(photo2 == null)
+			return String.valueOf(photo1.getId());
+		else return String.valueOf(photo1.getId() + " " + photo2.getId());
 	}
 	
-	
-	
-
 }

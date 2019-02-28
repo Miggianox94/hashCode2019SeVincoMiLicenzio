@@ -12,8 +12,8 @@ public class MainApp {
 		List<Photo> photos = Util.readFile(inputPath);
 		photos = Util.preprocessPhase(photos);
 		List<Slide> slides = Util.calulatingPhase(photos);
-		Util.writeFile(slides,outputPath);
 		
+		Util.writeFile(slides ,outputPath);
 	}
 	
 }

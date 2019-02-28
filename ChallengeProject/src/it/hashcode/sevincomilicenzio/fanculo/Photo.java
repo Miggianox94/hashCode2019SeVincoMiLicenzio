@@ -1,6 +1,5 @@
 package it.hashcode.sevincomilicenzio.fanculo;
 
-import java.util.Queue;
 import java.util.Set;
 
 public class Photo {
@@ -8,7 +7,7 @@ public class Photo {
 	//0=horizontal; 1=vertical
 	private int orientamento;
 	private Set<String> tags;
-	int id;
+	Integer id;
 	
 	public int getOrientamento() {
 		return orientamento;
