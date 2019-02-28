@@ -14,8 +14,8 @@ import org.apache.commons.io.FileUtils;
 
 public class Util {
 
-	private static String outputFileName = "a.txt";
-	private static final String INPUTFILE = "input_A.txt";
+	private static String outputFileName = "E.txt";
+	private static final String INPUTFILE = "input_E.txt";
 	private static final int intorno = 20;
 
 	public static List<Photo> readFile(String inputpath) throws IOException {
@@ -24,12 +24,14 @@ public class Util {
 		File file = new File(inputpath + File.separatorChar + INPUTFILE);
 		List<String> lines = FileUtils.readLines(file, "UTF-8");
 		boolean firtstLine = true;
+		int counter = -1;
 		for(String line : lines) {
 			Photo singlePhoto = new Photo();
 			if(firtstLine) {
 				firtstLine = false;
 				continue;
 			}
+			counter++;
 			String[] parts = line.split(" ");
 			int orientation = parts[0].equals("H")?0:1;
 			Set<String> tags = new HashSet<>();
@@ -38,6 +40,7 @@ public class Util {
 			}
 			singlePhoto.setOrientamento(orientation);
 			singlePhoto.setTags(tags);
+			singlePhoto.setId(counter);
 			toReturn.add(singlePhoto);
 		}
 		long finish = System.currentTimeMillis();
@@ -86,12 +89,16 @@ public class Util {
 		Collections.sort(slides, 
 				(o1,o2) -> o1.getTags().size() - o2.getTags().size());
 		for(Slide slide : slides) {
+			System.out.println("BASTARDO AAAAAAAA");
 			if(slide.isTaken()) {
 				continue;
 			}
 			slide.setTaken(true);
 			returnList.add(slide);
 			Slide bestSlide = calculateBestSlide(slide,slides);
+			if(bestSlide == null) {
+				break;
+			}
 			bestSlide.setTaken(true);
 			returnList.add(bestSlide);
 		}
@@ -170,7 +177,7 @@ public class Util {
 		catch(Exception ex)
 		{
 			System.out.println("Scoppiato in scrittura: " + ex.getMessage());
-			System.out.println(ex.getStackTrace());
+			ex.printStackTrace();
 		}
 		
 		long finish = System.currentTimeMillis();
