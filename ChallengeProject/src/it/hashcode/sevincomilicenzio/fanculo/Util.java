@@ -1,9 +1,15 @@
 package it.hashcode.sevincomilicenzio.fanculo;
 
+<<<<<<< HEAD
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+=======
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+>>>>>>> branch 'master' of https://github.com/Miggianox94/hashCode2019SeVincoMiLicenzio.git
 import java.util.List;
 import java.util.Set;
 import java.util.Collection;
